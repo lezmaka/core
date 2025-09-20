@@ -5,6 +5,10 @@ from __future__ import annotations
 from itertools import chain
 import logging
 
+from synology_dsm.api.core.external_usb import (
+    SynoCoreExternalUSBDevice,
+    SynoUSBStoragePartition,
+)
 from synology_dsm.api.surveillance_station import SynoSurveillanceStation
 from synology_dsm.api.surveillance_station.camera import SynoCamera
 from synology_dsm.exceptions import SynologyDSMNotLoggedInException
@@ -182,11 +186,19 @@ async def async_remove_config_entry_device(
     storage = api.storage
     assert storage is not None
     all_cameras: list[SynoCamera] = []
+    usb_devices: list[SynoCoreExternalUSBDevice] = []
+    usb_partitions: list[SynoUSBStoragePartition] = []
     if api.surveillance_station is not None:
         # get_all_cameras does not do I/O
         all_cameras = api.surveillance_station.get_all_cameras()
+    if api.external_usb is not None:
+        usb_devices = list(api.external_usb.get_devices.values())
+        for device in usb_devices:
+            usb_partitions.extend(list(device.device_partitions.values()))
     device_ids = chain(
         (camera.id for camera in all_cameras),
+        (device.device_name for device in usb_devices),
+        (partition.partition_title for partition in usb_partitions),
         storage.volumes_ids,
         storage.disks_ids,
         storage.volumes_ids,
