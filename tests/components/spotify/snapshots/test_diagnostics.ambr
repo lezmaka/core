@@ -3,6 +3,16 @@
   dict({
     'devices': list([
       dict({
+        'device_id': '19b1c8e0a1f181870fdc9749b2656466557666',
+        'device_type': 'Computer',
+        'is_active': False,
+        'is_private_session': False,
+        'is_restricted': False,
+        'name': 'LAPTOP-CLD6TJL',
+        'supports_volume': True,
+        'volume_percent': 30,
+      }),
+      dict({
         'device_id': '21dac6b0e0a1f181870fdc9749b2656466557666',
         'device_type': 'Computer',
         'is_active': False,

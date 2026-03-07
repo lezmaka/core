@@ -1,6 +1,16 @@
 {
   "devices": [
     {
+      "id": "19b1c8e0a1f181870fdc9749b2656466557666",
+      "is_active": false,
+      "is_private_session": false,
+      "is_restricted": false,
+      "name": "LAPTOP-CLD6TJL",
+      "supports_volume": true,
+      "type": "Computer",
+      "volume_percent": 30
+    },
+    {
       "id": "21dac6b0e0a1f181870fdc9749b2656466557666",
       "is_active": false,
       "is_private_session": false,

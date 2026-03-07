@@ -555,7 +555,10 @@ async def test_source_devices(
     await setup_integration(hass, mock_config_entry)
     state = hass.states.get("media_player.spotify_spotify_1")
 
-    assert state.attributes[ATTR_INPUT_SOURCE_LIST] == ["DESKTOP-BKC5SIK"]
+    assert state.attributes[ATTR_INPUT_SOURCE_LIST] == [
+        "DESKTOP-BKC5SIK",
+        "LAPTOP-CLD6TJL",
+    ]
 
     mock_spotify.return_value.get_devices.side_effect = SpotifyConnectionError
     freezer.tick(timedelta(minutes=5))
@@ -565,7 +568,10 @@ async def test_source_devices(
     state = hass.states.get("media_player.spotify_spotify_1")
     assert state
     assert state.state != STATE_UNAVAILABLE
-    assert state.attributes[ATTR_INPUT_SOURCE_LIST] == ["DESKTOP-BKC5SIK"]
+    assert state.attributes[ATTR_INPUT_SOURCE_LIST] == [
+        "DESKTOP-BKC5SIK",
+        "LAPTOP-CLD6TJL",
+    ]
 
 
 @pytest.mark.usefixtures("setup_credentials")
