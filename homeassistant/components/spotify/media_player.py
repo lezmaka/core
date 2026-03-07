@@ -268,7 +268,7 @@ class SpotifyMediaPlayer(SpotifyEntity, MediaPlayerEntity):
     @property
     def source_list(self) -> list[str] | None:
         """Return a list of source devices."""
-        return [device.name for device in self.devices.data]
+        return sorted([device.name for device in self.devices.data])
 
     @property
     def shuffle(self) -> bool | None:
